@@ -1,14 +1,12 @@
 workflows:
   android:
-    name: Build KaiOS Launcher APK
-    environment:
-      android_signing:
-        keystore: encrypted.keystore
-        keystore_password: $KEYSTORE_PASSWORD
-        key_alias: $KEY_ALIAS
-        key_password: $KEY_PASSWORD
+    name: Build APK
+    max_build_duration: 10
+    environment: {}
     scripts:
-      - chmod +x ./gradlew
-      - ./gradlew assembleDebug
+      - name: Build APK
+        script: |
+          chmod +x ./gradlew
+          ./gradlew assembleDebug
     artifacts:
       - app/build/outputs/apk/debug/app-debug.apk
